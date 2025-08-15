@@ -1,4 +1,6 @@
-/* Global Styles */
+/* ======================
+   GLOBAL STYLES & VARIABLES
+   ====================== */
 :root {
   --primary-color: #3498db;
   --secondary-color: #2c3e50;
@@ -33,23 +35,150 @@ h2 {
   font-size: 2.5rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .navbar .container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .about-content {
-    flex-direction: column;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+/* ======================
+   PROJECTS SECTION (FINAL)
+   ====================== */
+.centered-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* About Section */
+.outer-container {
+  background: #f5f5f5;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.project-outer-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.projects-section {
+  padding: 80px 0;
+  min-height: 100vh;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projects-section .container {
+  background: white; /* Grey background */
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.project-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card.active {
+  box-shadow: 0 0 0 3px var(--primary-color);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.03);
+}
+
+.project-card:nth-child(1) .project-image {
+  height: 240px;
+}
+
+.project-card:nth-child(3) .project-image {
+  object-fit: contain;
+  background: white;
+  padding: 10px;
+}
+
+.image-container {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f8f8;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.project-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+  color: var(--dark-color);
+  text-align: center;
+}
+
+.short-description {
+  color: #555;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.technologies {
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.button-container {
+  margin-top: auto;
+}
+
+.view-details-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.view-details-btn:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* ======================
+   ABOUT SECTION
+   ====================== */
 .about-section {
   background-color: white;
 }
@@ -65,45 +194,9 @@ h2 {
   max-width: 100%;
 }
 
-/* Projects Section */
-.projects-section {
-  background-color: var(--light-color);
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.project-card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-}
-
-.project-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.project-card h3 {
-  margin: 1rem;
-  color: var(--dark-color);
-}
-
-.project-card p {
-  margin: 0 1rem 1rem;
-}
-
-/* Contact Section */
+/* ======================
+   CONTACT SECTION
+   ====================== */
 .contact-section {
   background-color: white;
 }
@@ -150,4 +243,118 @@ form {
 
 .submit-btn:hover {
   background-color: #2980b9;
+}
+
+/* ======================
+   MODAL STYLES
+   ====================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-container {
+  background: white;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-image-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f8f8;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: white;
+  padding: 20px;
+}
+
+.modal-content {
+  padding: 30px;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--dark-color);
+}
+
+.modal-content p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.modal-features {
+  margin: 25px 0;
+}
+
+.modal-features ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.modal-features li {
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .projects-section .container {
+    padding: 25px;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .image-container {
+    height: 180px;
+    padding: 15px;
+  }
+  
+  .modal-container {
+    width: 100%;
+  }
+  
+  .modal-image-container {
+    height: 200px;
+    padding: 20px;
+  }
+  
+  .modal-content {
+    padding: 20px;
+  }
 }
